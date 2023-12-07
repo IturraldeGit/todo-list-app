@@ -5,7 +5,12 @@ import { AppUI } from './AppUI';
 function App() {
 
   // setting states
-  const [todos, saveTodos] = useLocalStorage('TODOS_V1', []);
+  const {
+    item: todos, 
+    saveItem: saveTodos,
+    loading,
+    error,
+  } = useLocalStorage('TODOS_V1', []);
   const [searchValue, setSearchValue] = React.useState('');
 
   // setting derived states
@@ -56,6 +61,8 @@ function App() {
     
     <AppUI 
 
+      loading={loading}
+      error={error}
       completedTodos={completedTodos}
       totalTodos={totalTodos}
       searchValue={searchValue}

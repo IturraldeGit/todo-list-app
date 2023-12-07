@@ -5,7 +5,9 @@ import { TodoItem } from '../TodoItem';
 import { CreateTodoBotton } from '../CreateTodoButton';
 
 function AppUI({
-    
+
+    loading,
+    error,
     completedTodos,
     totalTodos,
     searchValue,
@@ -28,6 +30,11 @@ function AppUI({
             />
     
             <TodoList>
+
+                {loading && <p>Estamos cargando...</p>}
+                {error && <p>No se pudieron cargar los TODOs</p>}
+                {(!loading && searchedTodos.length === 0) && <p>Crea tu primer TODO</p>}
+                
                 {searchedTodos.map(todo => (
                     <TodoItem 
                         key={todo.text}
@@ -44,16 +51,5 @@ function AppUI({
         </>
     );
 }
-
-// const defaultTodos = [
-//   {text: 'Cortar cebollas', completed: true},
-//   {text: 'Tomar el curso de Introducción a React.js', completed: false},
-//   {text: 'Llorar con la Llorona', completed: false},
-//   {text: 'Lalalala', completed: false},
-//   {text: 'Usar estados derivados', completed: true},
-// ];
-
-// localStorage.setItem('TODOS_V1', JSON.stringify(defaultTodos));
-// localStorage.removeItem('TODOS_V1');
 
 export { AppUI };
