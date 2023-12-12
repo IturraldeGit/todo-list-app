@@ -17,7 +17,7 @@ function TodoProvider( {children} ) {
     
       // setting derived states
     
-        //  H1 TODOS
+        //  H1 TODOS      
     const completedTodos = todos.filter(todo=>!!todo.completed).length;
     const totalTodos = todos.length;
     
@@ -32,6 +32,19 @@ function TodoProvider( {children} ) {
     
         }
     );
+    
+    const addTodo = (text) => {
+
+        const newTodos = [...todos];
+    
+        newTodos.push({
+            text,
+            completed: false,
+        });
+        
+        saveTodos(newTodos);
+
+    }
     
     const completeTodo = (text) => {
     
@@ -73,6 +86,7 @@ function TodoProvider( {children} ) {
             deleteTodo,
             openModal,
             setOpenModal,
+            addTodo,
 
         }}>
             {children}
